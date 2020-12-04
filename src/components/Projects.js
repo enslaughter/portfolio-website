@@ -4,7 +4,9 @@ function Projects(){
     return(
         <div className="projects">
             <h1>MY PROJECTS</h1>
-            <p>A curation of my web projects. All designs/challenges by Frontend Mentor.</p>            
+            <p>A curation of my web projects. All designs/challenges by Frontend Mentor.</p> 
+            <a className="projects--githubref" target="_blank" href="https://github.com/enslaughter" rel="noreferrer">Code for all projects can be found on my Github page.</a>   
+            <p>This website itself is also a project! It's made with the standard HTML/CSS/JS base, a React framework, and API (EmailJS) functionality!</p>      
 
             <div className="projects-container">
                 <div className="project-object">

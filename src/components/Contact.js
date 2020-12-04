@@ -1,48 +1,59 @@
 import React, {useState} from "react";
-import axios from "axios";
+import emailjs from "emailjs-com";
 
 function Contact(){
     const [msg, setMsg] = useState({
-        name: "",
-        email: "",
+        from_name: "",
+        reply_to: "",
         message: ""
     })
 
-    function handleSubmit(event) {
-        event.preventDefault();
+    // function handleSubmit(event) {
+    //     event.preventDefault();
         
-        axios({
-            method: "post",
-            url: process.env.REACT_APP_MAILGUN_DOMAIN,
+    //     axios({
+    //         method: "post",
+    //         url: process.env.REACT_APP_MAILGUN_DOMAIN,
             
-            auth: {
-                username: "api",
-                password: process.env.REACT_APP_MAILGUN_KEY
-            },
-            params: {
-                from: `${msg.name} <${msg.email}>`,
-                to: process.env.REACT_APP_MAILGUN_EMAIL,
-                subject: "New Work Request via Website",
-                text: `${msg.message}`
-            },
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then (
-            response => {
-                console.log(response);
-                setMsg({
-                    name: "",
-                    email: "",
-                    message: ""
-                });
-            },
-            reject => {
-                console.log(reject);
-            }
-        )
+    //         auth: {
+    //             username: "api",
+    //             password: process.env.REACT_APP_MAILGUN_KEY
+    //         },
+    //         params: {
+    //             from: `${msg.name} <${msg.email}>`,
+    //             to: process.env.REACT_APP_MAILGUN_EMAIL,
+    //             subject: "New Work Request via Website",
+    //             text: `${msg.message}`
+    //         },
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     }).then (
+    //         response => {
+    //             console.log(response);
+    //             setMsg({
+    //                 name: "",
+    //                 email: "",
+    //                 message: ""
+    //             });
+    //         },
+    //         reject => {
+    //             console.log(reject);
+    //         }
+    //     )
 
-        console.log(msg);
+    //     console.log(msg);
+    // }
+
+    function handleSubmit(event){
+        event.preventDefault();
+
+        emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICEID, process.env.REACT_APP_EMAILJS_TEMPLATEID, event.target, process.env.REACT_APP_EMAILJS_USERID)
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
     }
 
     function handleChange(event){
@@ -63,14 +74,14 @@ function Contact(){
                     <p className="contact-subheader">If you're interested in a project, contact me below:</p>
 
                     <form className="contact-form" onSubmit={handleSubmit} method="post" encType="text/plain">
-                        <label htmlFor="name">Name</label> 
+                        <label htmlFor="from_name">Name</label> 
                         <br></br>
-                        <input type="text" name="name" id="name" value={msg.name} onChange = {handleChange}/>
+                        <input type="text" name="from_name" id="from_name" value={msg.from_name} onChange = {handleChange}/>
                         <br></br>
                         <br></br>
-                        <label htmlFor="email">Contact e-mail</label>
+                        <label htmlFor="reply_to">Contact e-mail</label>
                         <br></br>
-                        <input type="email" name="email" id="email" value={msg.email} onChange = {handleChange}/>
+                        <input type="email" name="reply_to" id="reply_to" value={msg.reply_to} onChange = {handleChange}/>
                         <br></br>
                         <br></br>
                         <label htmlFor="message">Message</label>
