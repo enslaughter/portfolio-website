@@ -1,0 +1,5 @@
+Light Green - hsl 69, 43, 48
+Off-White - hsl 230, 27, 96
+Dark Blue - hsl 211, 18, 30
+Dark Brown - hsl 53, 15, 24
+Brick Red - hsl 0, 32, 46
