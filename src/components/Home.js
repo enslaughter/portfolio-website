@@ -4,13 +4,16 @@ function Home(){
     return(
         <div className="App">
 
+      <header>
       <div className="hero-image">
         <div className="hero-text">
           <h1 className="hero-header">Elijah Slaughter</h1>
           <p className="hero-subheader">A programmer and junior frontend developer.</p>
         </div>
       </div>
+      </header>
 
+      <main>
       <div className="about">
         <div className="about-points">
           <h2>A Little Bit About Me</h2>
@@ -56,6 +59,7 @@ function Home(){
                 about worldbuilding. I also love to cook and bake, and might even make myself my own cooking blog one day!</p>
         </div>
       </div>
+      </main>
 
       <div className="cta">
         <h2 className="cta-header">Interested in a Website?</h2>
